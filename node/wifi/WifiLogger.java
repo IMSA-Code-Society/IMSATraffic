@@ -8,6 +8,7 @@ import util.ConfigReader;
 public class WifiLogger {
     private double timer;
     private String localIp;
+    private String routerIp;
 
     private WifiObserver observer;
 
@@ -19,6 +20,7 @@ public class WifiLogger {
     public WifiLogger(ConfigReader config) {
         this.timer = config.timer;
         this.localIp = config.localIp;
+        this.routerIp = config.routerIp;
     }
 
     public void subscribe(WifiObserver observer) {
