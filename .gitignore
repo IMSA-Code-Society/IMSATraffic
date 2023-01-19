@@ -105,3 +105,6 @@ dist
 
 # JetBrains IDEs
 .idea
+
+# Maven output
+target
