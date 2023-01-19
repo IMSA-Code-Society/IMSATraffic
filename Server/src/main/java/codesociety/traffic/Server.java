@@ -1,13 +1,14 @@
 package codesociety.traffic;
 
-/**
- * Hello world!
- *
- */
+import codesociety.traffic.network.WebServer;
+import codesociety.traffic.util.ConfigReader;
+
 public class Server 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        ConfigReader config = new ConfigReader();
+        WebServer server = new WebServer(config);
+        server.start();
     }
 }
