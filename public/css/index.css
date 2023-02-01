@@ -1,13 +1,16 @@
-.mobile-nav {
+.navbar {
   background: darkslategray;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  opacity: .25;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   position: fixed;
-  bottom: 0;
   height: 65px;
   width: 100%;
   display: flex;
   justify-content: space-around;
+}
+#mobile-nav {
+  bottom: 0; 
 }
 .bloc-icon {
   display: flex;
@@ -15,23 +18,15 @@
   align-items: center;
 }
 @media screen and (min-width: 769px) {
-  .mobile-nav {
+  #mobile-nav {
   display: none;
   }
 } 
-.desktop-nav {
-  background: darkslategray;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  position: fixed;
+#desktop-nav {
   top: 0;
-  height: 65px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
 }
 @media screen and (max-width: 768px) {
-  .desktop-nav {
+  #desktop-nav {
     display: none;
   }
 }
@@ -41,4 +36,13 @@ body {
 }
 .navicon {
   height: 45px;
+}
+.navbar:hover{
+  background-color: rgb(47, 79, 79);
+  opacity: 1;
+  transition: .6s;
+}
+.navbar a:hover {
+  background-color: rgb(41,62,62);
+  transition: .6s;
 }
