@@ -46,3 +46,11 @@ body {
   background-color: rgb(41,62,62);
   transition: .6s;
 }
+.navbar:not(:hover){
+  opacity: .25;
+  transition: .6s;
+}
+.navbar a:not(:hover){
+  background-color: darkslategray;
+  transition: .6s;
+}
