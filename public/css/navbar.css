@@ -1,0 +1,68 @@
+.navbar {
+	background: darkslategray;
+	opacity: .25;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: fixed;
+	height: 65px;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+#mobile-nav {
+	bottom: 0;
+}
+
+.bloc-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (min-width: 769px) {
+	#mobile-nav {
+		display: none;
+	}
+}
+
+#desktop-nav {
+	top: 0;
+	position: relative;
+}
+
+@media screen and (max-width: 768px) {
+	#desktop-nav {
+		display: none;
+	}
+}
+
+body {
+	background-color: rgb(54, 54, 54);
+	margin: 0px
+}
+
+.navicon {
+	height: 45px;
+}
+
+.navbar:hover {
+	background-color: rgb(47, 79, 79);
+	opacity: 1;
+	transition: .6s;
+}
+
+.navbar a:hover {
+	background-color: rgb(41, 62, 62);
+	transition: .6s;
+}
+
+.navbar:not(:hover) {
+	opacity: .25;
+	transition: .6s;
+}
+
+.navbar a:not(:hover) {
+	background-color: darkslategray;
+	transition: .6s;
+}
