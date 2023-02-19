@@ -18,7 +18,11 @@ body {
 }
 
 #root {
+    position: relative;
     margin: 32px;
+    max-width: 1140px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 object {
