@@ -14,9 +14,13 @@
 body {
 	background-color: var(--background-1);
 	margin: 0px;
-    color: var(--interface)
+    color: var(--interface);
 }
 
 #root {
     margin: 32px;
+}
+
+object {
+    pointer-events: none;
 }

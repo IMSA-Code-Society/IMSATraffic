@@ -6,7 +6,7 @@
 	height: 65px;
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	flex-direction: row;
 }
 
 #mobile-nav {
@@ -14,21 +14,34 @@
 }
 
 .bloc-icon {
+	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	transition: .2s;
 }
 
+#desktop-nav {
+	top: 0;
+	position: relative;
+}
+
 @media screen and (min-width: 769px) {
 	#mobile-nav {
 		display: none;
 	}
-}
 
-#desktop-nav {
-	top: 0;
-	position: relative;
+	.bloc-icon {
+		color: var(--interface);
+		text-decoration: none;
+		font-size: 24px;
+		padding: 0px 16px 0px 16px;
+		justify-content: flex-start;
+	}
+
+	.bloc-icon > object {
+		margin-right: 16px;
+	}
 }
 
 @media screen and (max-width: 768px) {

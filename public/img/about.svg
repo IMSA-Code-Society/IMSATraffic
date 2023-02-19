@@ -4,7 +4,11 @@
 	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
 	 <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../css/root.css" type="text/css"/>
 <style type="text/css">
-	.st0{fill:none;stroke:var(--interface);stroke-width:9;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:var(--interface);stroke-width:10;stroke-miterlimit:10;}
 </style>
-<path class="st0" d="M75,11.59L11.59,72.15h23.93v66.26h78.98V72.15h23.93L75,11.59z M91.15,116.89h-33.4V80.07h33.4V116.89z"/>
+<path class="st0" d="M49.44,47.88c1.92-12.23,12.94-21.3,25.61-21.26c13.14,0.04,23.8,10.05,25.32,20.56
+	c1.01,7.01-2.01,14.33-6.59,19.01C86,74.14,76.19,72.02,73.37,79.41c-0.29,0.77-0.42,4.34-0.67,11.45
+	c-0.14,4.08-0.23,7.43-0.29,9.68"/>
+<circle class="st0" cx="73.31" cy="114.19" r="2.71"/>
+<circle class="st0" cx="75" cy="75" r="67.78"/>
 </svg>
