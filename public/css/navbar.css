@@ -34,13 +34,14 @@
 	.bloc-icon {
 		color: var(--interface);
 		text-decoration: none;
-		font-size: 24px;
+		font-size: 20px;
 		padding: 0px 16px 0px 16px;
 		justify-content: flex-start;
 	}
 
 	.bloc-icon > object {
 		margin-right: 16px;
+		width: 30px;
 	}
 }
 
