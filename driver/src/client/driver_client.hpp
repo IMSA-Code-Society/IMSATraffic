@@ -3,6 +3,9 @@
 
 class DriverClient {
     public:
-        void connect(std::string ip, int port);
+        void connectClient(std::string ip, int port);
         void sendData(ClientData data);
+    private:
+        int sockfd;
+        int clientfd;
 };
