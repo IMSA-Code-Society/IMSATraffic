@@ -1,4 +1,4 @@
-package codesociety.traffic.network;
+package codesociety.traffic.web;
 
 import static spark.Spark.*;
 
