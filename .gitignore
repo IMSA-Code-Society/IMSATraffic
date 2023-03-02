@@ -111,3 +111,9 @@ target
 
 # VSCode config
 .vscode
+
+# VS config
+.vs
+
+# VS builds
+out
