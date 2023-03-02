@@ -1,14 +1,15 @@
-#include <winsock.h>;
-#include <Ws2tcpip.h>; // Ws2_32.lib
-#include <string>;
-#include <cstring>;
-#include "driver_client.hpp";
+#include <winsock2.h>
+#include <Ws2tcpip.h> // Ws2_32.lib
+#include <string>
+#include <cstring>
+#include "driver_client.hpp"
+#include "client_data.hpp"
 
 void DriverClient::connectClient(std::string ip, int port) {
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(1234);
-    inet_pton(AF_INET, ip.c_str(), &addr.sin_addr);
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = inet_addr(ip.c_str());
 
     this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
     

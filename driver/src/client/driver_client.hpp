@@ -1,5 +1,8 @@
-#include <string>;
-#include "client_data.hpp";
+#ifndef driver_client
+#define driver_client
+
+#include <string>
+#include "client_data.hpp"
 
 class DriverClient {
     public:
@@ -9,3 +12,5 @@ class DriverClient {
         int sockfd;
         int clientfd;
 };
+
+#endif
