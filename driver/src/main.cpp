@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "client/driver_client.hpp"
-#include "client/client_data.hpp"
+#include "driver_client.hpp"
+#include "client_data.hpp"
 
 std::string IP = "127.0.0.1";
 int PORT = 3003;

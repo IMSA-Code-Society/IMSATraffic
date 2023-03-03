@@ -26,6 +26,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(GLOB_RECURSE SRC src/*.cpp)
 add_executable(driver ${SRC})
 
+target_include_directories(driver PRIVATE ${CMAKE_SOURCE_DIR}/src/include)
+
 if(WIN32)
 	message("Linking ws2_32...")
 	target_link_libraries(driver wsock32 ws2_32)
