@@ -30,6 +30,7 @@ target_include_directories(driver PRIVATE ${CMAKE_SOURCE_DIR}/src/include)
 
 if(WIN32)
 	message("Linking ws2_32...")
+	target_compile_options(driver PRIVATE -fexceptions)
 	target_link_libraries(driver wsock32 ws2_32)
 endif()
 
