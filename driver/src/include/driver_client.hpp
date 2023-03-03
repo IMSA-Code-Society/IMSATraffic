@@ -10,7 +10,6 @@ class DriverClient {
         void sendData(ClientData data);
     private:
         int sockfd;
-        int clientfd;
 };
 
 #endif
