@@ -13,6 +13,8 @@ const char* ClientData::serializeData() {
 
     int data_size = device_name.length() + bssid.length();
     char* serialized_data = new char[data_size];
+    serialized_data[0] = 0; 
+
     strcat(serialized_data, device_data);
     strcat(serialized_data, bssid_data);
 
