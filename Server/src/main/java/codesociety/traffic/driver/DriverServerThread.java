@@ -1,13 +1,16 @@
 package codesociety.traffic.driver;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 
 import codesociety.traffic.util.DatabaseIO;
 
 public class DriverServerThread extends Thread {
+    private int PACKET_SIZE = 1024;
+
     private Socket socket;
     private DatabaseIO db;
 
@@ -19,20 +22,22 @@ public class DriverServerThread extends Thread {
     public void run() {
         System.out.println("new connection");
         try {
-            InputStream stream = socket.getInputStream();
-            byte[] data = new byte[stream.available()];
-            stream.read(data);
-            if (data.length != 0) {
-                db.writeDriverData(parseDriverData(data));
+            char[] buffer = new char[PACKET_SIZE];
+            int bytesRead = 0;
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            while ((bytesRead = in.read(buffer)) != -1) {
+                db.writeDriverData(parseDriverData(buffer));
             }
         } catch (IOException err) {
             System.out.println(err);
         }
     }
 
-    private DriverData parseDriverData(byte[] data) throws UnsupportedEncodingException {
-        String bssid = new String(data, 0, 17, "UTF-8");
-        String deviceName = new String(data, 17, data.length - 17, "UTF-8");
+    private DriverData parseDriverData(char[] buffer) throws UnsupportedEncodingException {
+        String data = new String(buffer);
+        String bssid = data.substring(0, 17);
+        String deviceName = data.substring(17, data.length() - 17);
         return new DriverData(bssid, deviceName);
     }
 }
