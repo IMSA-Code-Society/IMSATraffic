@@ -7,6 +7,7 @@
 #include "driver_client.hpp"
 #include "client_data.hpp"
 #include "inet_pton.hpp"
+#include "bssid_logger.hpp"
 
 void DriverClient::connectClient(std::string ip, int port) {
     WSADATA wsaData;
@@ -15,6 +16,7 @@ void DriverClient::connectClient(std::string ip, int port) {
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) {
         std::cout << "socket creation failed: " << sockfd << std::endl;
+        return;
     }
     
     struct sockaddr_in addr;
@@ -25,16 +27,23 @@ void DriverClient::connectClient(std::string ip, int port) {
     int addr_status = InetPton(AF_INET, ip.c_str(), &addr.sin_addr.s_addr);
     if (addr_status <= 0) {
         std::cout << "invalid address: " << addr_status << std::endl;
+        return;
     }
     
     int conn_status = connect(sockfd, (struct sockaddr*)&addr, sizeof(addr));
     if (conn_status < 0) {
         std::cout << "connection failed: " << conn_status << std::endl;
+        return;
     }
+
+    this->connected = true;
 }
 
 void DriverClient::sendData(ClientData data) {
-    std::cout << "sending data" << std::endl;
-    const char* serializedData = data.serializeData();
-    send(sockfd, serializedData, strlen(serializedData), 0);
+    if (this->connected) {
+        const char* serializedData = data.serializeData();
+        send(sockfd, serializedData, strlen(serializedData), 0);
+    } else {
+        std::cout << "false" << std::endl;
+    }
 }
