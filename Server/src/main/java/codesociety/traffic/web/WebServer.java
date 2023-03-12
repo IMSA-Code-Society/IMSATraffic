@@ -12,7 +12,7 @@ public class WebServer {
     }
 
     public void start() {
-        port(config.port);
+        port(config.webPort);
         get("/hello", (req, res) -> "Hello World");
     }
 }
