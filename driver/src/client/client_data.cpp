@@ -20,3 +20,19 @@ const char* ClientData::serializeData() {
 
     return (const char*)serialized_data;
 }
+
+std::string ClientData::generateDeviceName() {
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    std::string device_name;
+    device_name.reserve(8);
+
+    for (int i = 0; i < 8; ++i) {
+        device_name += alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+    
+    return device_name;
+}
