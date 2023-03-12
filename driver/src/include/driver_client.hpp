@@ -6,6 +6,7 @@
 
 class DriverClient {
     public:
+        bool connected = false;
         void connectClient(std::string ip, int port);
         void sendData(ClientData data);
     private:

@@ -8,6 +8,7 @@ class ClientData {
         std::string device_name;
         std::string bssid;
         const char* serializeData();
+        static std::string generateDeviceName();
         ClientData(std::string device_name, std::string bssid);
 };
 
