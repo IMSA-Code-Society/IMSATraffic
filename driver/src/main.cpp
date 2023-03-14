@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <time.h>
 #include <windows.h>
 #include "driver_client.hpp"
 #include "client_data.hpp"
@@ -16,6 +17,8 @@ int main() {
     std::cout << "Sending to: " << IP << ":" << PORT << std::endl;
 
     ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+
+    srand(time(NULL));
     
     DriverClient client;
     client.connectClient(IP, PORT);
