@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include <array>
+#include <iostream>
 
 #include "bssid_logger.hpp"
 
@@ -22,5 +23,10 @@ std::string exec(const char* cmd) {
 std::string BSSIDLogger::getBSSID()
 {
     std::string netshOut = exec("netsh wlan show interface | find \"BSSID\"");
-    return netshOut.substr(29, 17);
+
+    if (netshOut.length() != 0) {
+        return netshOut.substr(29, 17);
+    } else {
+        return "00:00:00:00:00:00";
+    }
 }
