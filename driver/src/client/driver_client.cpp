@@ -43,7 +43,5 @@ void DriverClient::sendData(ClientData data) {
     if (this->connected) {
         const char* serializedData = data.serializeData();
         send(sockfd, serializedData, strlen(serializedData), 0);
-    } else {
-        std::cout << "false" << std::endl;
     }
 }
