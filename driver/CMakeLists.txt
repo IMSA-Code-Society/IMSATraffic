@@ -34,11 +34,15 @@ if(WIN32)
 	target_link_libraries(TrafficDriver wsock32 ws2_32)
 endif()
 
-if(debug)
+if(${CMAKE_BUILD_TYPE} MATCHES Debug)
 	message("Debug mode on")
 	add_custom_command(TARGET TrafficDriver POST_BUILD
 		COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TrafficDriver.exe
 		WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 		COMMENT "Running build..."
 	)
+else()
+	message("Release mode on")
+	message("Hiding console window...")
+	set(CMAKE_CXX_FLAGS "-mwindows")
 endif()
