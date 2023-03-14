@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9.1)
 set(CMAKE_CXX_STANDARD 14)
-project(IMSATrafficDriver VERSION 0.0.0 LANGUAGES C CXX)
+project(TrafficDriver VERSION 0.0.0 LANGUAGES C CXX)
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/out)
 
@@ -24,20 +24,20 @@ endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 file(GLOB_RECURSE SRC src/*.cpp)
-add_executable(driver ${SRC})
+add_executable(TrafficDriver ${SRC})
 
-target_include_directories(driver PRIVATE ${CMAKE_SOURCE_DIR}/src/include)
+target_include_directories(TrafficDriver PRIVATE ${CMAKE_SOURCE_DIR}/src/include)
 
 if(WIN32)
 	message("Linking ws2_32...")
-	target_compile_options(driver PRIVATE -fexceptions)
-	target_link_libraries(driver wsock32 ws2_32)
+	target_compile_options(TrafficDriver PRIVATE -fexceptions)
+	target_link_libraries(TrafficDriver wsock32 ws2_32)
 endif()
 
 if(debug)
 	message("Debug mode on")
-	add_custom_command(TARGET driver POST_BUILD
-		COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/driver.exe
+	add_custom_command(TARGET TrafficDriver POST_BUILD
+		COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TrafficDriver.exe
 		WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 		COMMENT "Running build..."
 	)
