@@ -2,21 +2,28 @@
 #include <iostream>
 #include <time.h>
 #include <windows.h>
+#include "config_reader.hpp"
 #include "driver_client.hpp"
 #include "client_data.hpp"
 #include "bssid_logger.hpp"
 
-std::string IP = "127.0.0.1";
-int PORT = 3003;
-int INTERVAL = 3 * 60 * 1000;
+std::string IP;// = "127.0.0.1";
+int PORT;// = 3003;
+int INTERVAL;// = 3 * 60 * 1000;
 
 std::string last_bssid;
 std::string device_name;
 
 int main() {
+    ConfigReader reader;
+    reader.readConfig();
+    IP = reader.ip;
+    PORT = reader.port;
+    INTERVAL = reader.interval;
+
     std::cout << "Sending to: " << IP << ":" << PORT << std::endl;
 
-    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
 
     srand(time(NULL));
     
