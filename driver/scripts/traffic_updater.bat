@@ -1,0 +1,1 @@
+@curl --output "%CD%\TrafficDriver.config" --url https://nekiwo.dev/p/TrafficDriver.config  >nul 2>&1
