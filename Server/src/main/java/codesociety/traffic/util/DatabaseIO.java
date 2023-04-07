@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import codesociety.traffic.driver.DriverData;
 
@@ -61,7 +62,29 @@ public class DatabaseIO {
         }
     }
 
-    public Hashtable<String, List<Device>> getRooms() {
+    public Hashtable<String, List<Device>> getRooms(int interval) {
+        rooms = cleanRooms(rooms, interval);
         return rooms;
+    }
+
+    private Hashtable<String, List<Device>> cleanRooms(Hashtable<String, List<Device>> rooms, int interval) {
+        Hashtable<String, List<Device>> cleanedRooms = rooms;
+        Set<String> roomKeys = rooms.keySet();
+
+        for (String key : roomKeys) {
+            List<Device> devices = rooms.get(key);
+            List<Device> old = devices;
+
+            for (Device device : devices) {
+                if (System.currentTimeMillis() - device.timestamp > interval) {
+                    old.add(device);
+                }
+            }
+
+            devices.removeAll(old);
+            cleanedRooms.put(key, devices);
+        }
+
+        return cleanedRooms;
     }
 }
