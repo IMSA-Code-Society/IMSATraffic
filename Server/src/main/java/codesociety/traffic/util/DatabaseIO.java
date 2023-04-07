@@ -40,10 +40,13 @@ public class DatabaseIO {
 
         if (deviceList == null) {
             rooms.put(data.bssid, new ArrayList<>());
+            deviceList = rooms.get(data.bssid);
         }
 
         for (int i = 0; i < deviceList.size(); i++) {
-            if (deviceList.get(i).id == data.deviceName) {
+            if (deviceList.get(i).id.equals(data.deviceName)) {
+                deviceList.set(i, new Device(data.deviceName, System.currentTimeMillis()));
+                rooms.put(data.bssid, deviceList);
                 return;
             }
         }
@@ -57,23 +60,21 @@ public class DatabaseIO {
             Statement st = conn.createStatement();
             st.executeQuery(statement);
             st.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        } catch (SQLException e) {}
     }
 
     public Hashtable<String, List<Device>> getRooms(int interval) {
-        rooms = cleanRooms(rooms, interval);
+        rooms = cleanRooms(interval);
         return rooms;
     }
 
-    private Hashtable<String, List<Device>> cleanRooms(Hashtable<String, List<Device>> rooms, int interval) {
+    private Hashtable<String, List<Device>> cleanRooms(int interval) {
         Hashtable<String, List<Device>> cleanedRooms = rooms;
         Set<String> roomKeys = rooms.keySet();
 
         for (String key : roomKeys) {
             List<Device> devices = rooms.get(key);
-            List<Device> old = devices;
+            List<Device> old = new ArrayList<>();
 
             for (Device device : devices) {
                 if (System.currentTimeMillis() - device.timestamp > interval) {
