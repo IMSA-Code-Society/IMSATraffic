@@ -31,6 +31,7 @@ public class DriverServerThread extends Thread {
             }
         } catch (IOException err) {
             System.out.println(err);
+            this.interrupt();
         }
     }
 
