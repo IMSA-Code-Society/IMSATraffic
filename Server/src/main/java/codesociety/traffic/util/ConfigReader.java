@@ -39,8 +39,8 @@ public class ConfigReader {
 
         this.driverPort = Integer.parseInt(driverProp.getProperty("port"));
         
-        this.dbURL = driverProp.getProperty("url");
-        this.dbUser = driverProp.getProperty("user");
-        this.dbPassword = driverProp.getProperty("password");
+        this.dbURL = dbProp.getProperty("url");
+        this.dbUser = dbProp.getProperty("user");
+        this.dbPassword = dbProp.getProperty("password");
     }
 }

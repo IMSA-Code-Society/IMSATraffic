@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import codesociety.traffic.util.DatabaseIO;
 
-public class DriverServer {
+public class DriverServer extends Thread {
     private int port;
     private DatabaseIO db;
 
@@ -15,7 +15,7 @@ public class DriverServer {
         this.db = db;
     }
 
-    public void start() {
+    public void run() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
                 Socket socket = serverSocket.accept();
