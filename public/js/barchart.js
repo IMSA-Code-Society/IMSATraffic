@@ -51,4 +51,7 @@ fetch("/traffic.json").then(result => {
 
   const ctx = document.getElementById('Traffic');
   new Chart(ctx, config);
+}).catch(error=> {
+  document.getElementById("Header").innerHTML="Error 5oo: Data not Found"
+  document.getElementById("Subtitle").innerHTML=""
 })
