@@ -13,15 +13,15 @@ public class Server
         System.out.println("Starting server...");
 
         ConfigReader config = new ConfigReader();
-
         DatabaseIO db = new DatabaseIO(config);
-        WebServer webServer = new WebServer(config);
-        webServer.start();
 
         DriverServer driverServer = new DriverServer(config.driverPort, db);
         driverServer.start();
 
         DeviceCounter deviceCounter = new DeviceCounter(db);
         deviceCounter.start();
+
+        WebServer webServer = new WebServer(config, deviceCounter);
+        webServer.start();
     }
 }

@@ -12,6 +12,8 @@ public class DeviceCounter extends Thread {
 
     private DatabaseIO db;
 
+    public int[] counts = new int[8];
+
     public DeviceCounter(DatabaseIO db) {
         this.db = db;
         
@@ -27,7 +29,7 @@ public class DeviceCounter extends Thread {
                 Thread.sleep(INTERVAL);
 
                 Hashtable<String, List<Device>> rooms = db.getRooms(INTERVAL);
-                int[] counts = countDevices(rooms);
+                counts = countDevices(rooms);
                 String countsString = "";
 
                 for (int i = 0; i < counts.length - 1; i++) {
@@ -37,6 +39,7 @@ public class DeviceCounter extends Thread {
 
                 System.out.println(countsString);
                 db.executeQuery("INSERT INTO traffic VALUES (current_timestamp, " + countsString + ")");
+
             }
         } catch (InterruptedException e) {
             System.out.println(e);

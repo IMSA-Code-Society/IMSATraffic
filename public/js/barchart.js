@@ -1,7 +1,7 @@
 
 // <block:setup:1>
 
-fetch("/IMSATraffic/public/traffic.json").then(result => {
+fetch("/traffic.json").then(result => {
   return result.json()
 }).then(json => {
   console.log(json)
