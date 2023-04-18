@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigReader {
+    public RoomReader roomReader;
+
     public int webPort;
+    public float driverWeight;
+    public float nodeWeight;
 
     public int driverPort;
 
@@ -15,6 +19,8 @@ public class ConfigReader {
     public String dbPassword;
 
     public ConfigReader() {
+        roomReader = new RoomReader();
+
         FileInputStream serverStream;
         Properties serverProp = new Properties();
         FileInputStream driverStream;
@@ -35,12 +41,14 @@ public class ConfigReader {
             err.printStackTrace();
         }
 
-        this.webPort = Integer.parseInt(serverProp.getProperty("port"));
+        webPort = Integer.parseInt(serverProp.getProperty("port"));
+        driverWeight = Float.parseFloat(serverProp.getProperty("driver_weight"));
+        nodeWeight = Float.parseFloat(serverProp.getProperty("node_weight"));
 
-        this.driverPort = Integer.parseInt(driverProp.getProperty("port"));
-        
-        this.dbURL = dbProp.getProperty("url");
-        this.dbUser = dbProp.getProperty("user");
-        this.dbPassword = dbProp.getProperty("password");
+        driverPort = Integer.parseInt(driverProp.getProperty("port"));
+    
+        dbURL = dbProp.getProperty("url");
+        dbUser = dbProp.getProperty("user");
+        dbPassword = dbProp.getProperty("password");
     }
 }
