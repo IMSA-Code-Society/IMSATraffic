@@ -3,7 +3,10 @@ package codesociety.traffic.util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class RoomReader {
@@ -18,6 +21,10 @@ public class RoomReader {
      * msa: 6
      * studion: 7
      */
+    
+    private String[] roomLabelsArray = new String[] {"in2", "oldCaf", "irc", "tvPit", "ssa", "loft", "msa", "studion"};
+    public List<String> roomLabels = new ArrayList<>(Arrays.asList(roomLabelsArray));
+    public float[] weights = new float[] {1, 1, 1, 1, 1, 1, 1, 1};
 
     private HashMap<String, Integer> rooms = new HashMap<>();
     private BufferedReader in;
