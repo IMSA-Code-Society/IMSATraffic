@@ -11,12 +11,18 @@ import java.util.Properties;
 import java.util.Set;
 
 import codesociety.traffic.driver.DriverData;
+import codesociety.traffic.node.NodeData;
 
 public class DatabaseIO {
-    private Hashtable<String, List<Device>> rooms = new Hashtable<>();
+    private RoomReader roomConfig;
+
+    private Hashtable<String, List<Device>> driverRooms = new Hashtable<>();
+    private float[] nodeRooms = new float[8];
     private Connection conn;
 
     public DatabaseIO(ConfigReader config) {
+        this.roomConfig = config.roomReader;
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -36,23 +42,27 @@ public class DatabaseIO {
     }
 
     public void writeDriverData(DriverData data) {
-        List<Device> deviceList = rooms.get(data.bssid);
+        List<Device> deviceList = driverRooms.get(data.bssid);
 
         if (deviceList == null) {
-            rooms.put(data.bssid, new ArrayList<>());
-            deviceList = rooms.get(data.bssid);
+            driverRooms.put(data.bssid, new ArrayList<>());
+            deviceList = driverRooms.get(data.bssid);
         }
 
         for (int i = 0; i < deviceList.size(); i++) {
             if (deviceList.get(i).id.equals(data.deviceName)) {
                 deviceList.set(i, new Device(data.deviceName, System.currentTimeMillis()));
-                rooms.put(data.bssid, deviceList);
+                driverRooms.put(data.bssid, deviceList);
                 return;
             }
         }
 
         deviceList.add(new Device(data.deviceName, System.currentTimeMillis()));
-        rooms.put(data.bssid, deviceList);
+        driverRooms.put(data.bssid, deviceList);
+    }
+
+    public void writeNodeData(NodeData data) {
+        nodeRooms[roomConfig.roomLabels.indexOf(data.room)] = data.value;
     }
 
     public void executeQuery(String statement) {
@@ -63,17 +73,21 @@ public class DatabaseIO {
         } catch (SQLException e) {}
     }
 
-    public Hashtable<String, List<Device>> getRooms(int interval) {
-        rooms = cleanRooms(interval);
-        return rooms;
+    public Hashtable<String, List<Device>> getDriverRooms(int interval) {
+        driverRooms = cleanRooms(interval);
+        return driverRooms;
+    }
+
+    public float[] getNodeRooms() {
+        return nodeRooms;
     }
 
     private Hashtable<String, List<Device>> cleanRooms(int interval) {
-        Hashtable<String, List<Device>> cleanedRooms = rooms;
-        Set<String> roomKeys = rooms.keySet();
+        Hashtable<String, List<Device>> cleanedRooms = driverRooms;
+        Set<String> roomKeys = driverRooms.keySet();
 
         for (String key : roomKeys) {
-            List<Device> devices = rooms.get(key);
+            List<Device> devices = driverRooms.get(key);
             List<Device> old = new ArrayList<>();
 
             for (Device device : devices) {
