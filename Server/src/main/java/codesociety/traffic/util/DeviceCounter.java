@@ -10,14 +10,17 @@ public class DeviceCounter extends Thread {
     private int ROOM_COUNT = 8;
     private HashMap<String, Integer> BSSID_TABLE;
 
+    private ConfigReader config;
+    private RoomReader roomReader;
     private DatabaseIO db;
 
-    public int[] counts = new int[8];
+    public float[] counts = new float[ROOM_COUNT];
 
-    public DeviceCounter(DatabaseIO db) {
+    public DeviceCounter(ConfigReader config, DatabaseIO db) {
+        this.config = config;
+        this.roomReader = config.roomReader;
         this.db = db;
         
-        RoomReader roomReader = new RoomReader();
         BSSID_TABLE = roomReader.getRooms();
     }
 
@@ -28,8 +31,9 @@ public class DeviceCounter extends Thread {
             while (true) {
                 Thread.sleep(INTERVAL);
 
-                Hashtable<String, List<Device>> rooms = db.getRooms(INTERVAL);
-                counts = countDevices(rooms);
+                Hashtable<String, List<Device>> driverRooms = db.getDriverRooms(INTERVAL);
+                float[] nodeRooms = db.getNodeRooms();
+                counts = countDevices(driverRooms, nodeRooms);
                 String countsString = "";
 
                 for (int i = 0; i < counts.length - 1; i++) {
@@ -46,12 +50,18 @@ public class DeviceCounter extends Thread {
         }
     }
 
-    private int[] countDevices(Hashtable<String, List<Device>> rooms) {
-        int[] counts = new int[ROOM_COUNT];
-        Set<String> roomKeys = rooms.keySet();
+    private float[] countDevices(Hashtable<String, List<Device>> driverRooms, float[] nodeCounts) {
+        float[] counts = new float[ROOM_COUNT];
+        int[] driverCounts = new int[ROOM_COUNT];
+        Set<String> driverRoomKeys = driverRooms.keySet();
 
-        for (String key : roomKeys) {
-            counts[BSSID_TABLE.get(key)] = rooms.get(key).size();
+        for (String key : driverRoomKeys) {
+            driverCounts[BSSID_TABLE.get(key)] = driverRooms.get(key).size();
+        }
+
+        for (int i = 0; i < ROOM_COUNT; i++) {
+            float value = driverCounts[i] * config.driverWeight + nodeCounts[i] * config.nodeWeight;
+            counts[i] += value * roomReader.weights[i];
         }
 
         return counts;
