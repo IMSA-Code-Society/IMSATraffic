@@ -24,16 +24,21 @@
 		<nav class="navbar" id="desktop-nav">
 			<a hover href="index.html" class="bloc-icon"><object data="img/home.svg" class="navicon"></object>Home</a>
 			<a hover href="#" class="bloc-icon"><object data="img/map.svg" class="navicon"></object>Map</a>
-			<a hover href="feeback.html" class="bloc-icon"><object data="img/feedback.svg" class="navicon"></object>Feedback</a>
+			<a hover href="feedback.html" class="bloc-icon"><object data="img/feedback.svg" class="navicon"></object>Feedback</a>
 			<a hover href="about.html" class="bloc-icon"><object data="img/about.svg" class="navicon"></object>About</a>
 		</nav>
 	</div>
 	<div id="root">
 		<h2 id="Header">IMSA Traffic</h2>
 		<p id="Subtitle">This is a website that tracks connections to the internet in places around the school. Use this to decide where you next event will be!</p>
-		<canvas id="Traffic"></canvas>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<script src="js/barchart.js"></script>
+		<hr class="rounded">
+		<h3>Live Traffic</h3>
+		<canvas id="Traffic"></canvas><br>
+		<h3>Past Traffic</h3>
+		<canvas id="history"></canvas><br>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/barchart.js"></script>
+	<script src="js/linechart.js"></script>
 </body>
 </htmL>
