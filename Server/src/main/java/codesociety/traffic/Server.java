@@ -18,10 +18,10 @@ public class Server
         DriverServer driverServer = new DriverServer(config.driverPort, db);
         driverServer.start();
 
-        DeviceCounter deviceCounter = new DeviceCounter(db);
+        DeviceCounter deviceCounter = new DeviceCounter(config, db);
         deviceCounter.start();
 
-        WebServer webServer = new WebServer(config, deviceCounter);
+        WebServer webServer = new WebServer(config, db, deviceCounter);
         webServer.start();
     }
 }
