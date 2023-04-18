@@ -19,7 +19,7 @@ body {
 
 #root {
     position: relative;
-    margin: 32px;
+    margin: 100px 0px 32px 0px;
     max-width: 1140px;
     left: 50%;
     transform: translateX(-50%);
@@ -27,4 +27,15 @@ body {
 
 object {
     pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+	#root {
+        margin-top: 32px;
+        max-width: calc(100% - 64px);
+	}
+
+    h2 {
+        font-size: 32px;
+    }
 }
