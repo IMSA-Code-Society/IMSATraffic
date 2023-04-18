@@ -1,11 +1,11 @@
 CREATE TABLE traffic (
     ts timestamp,
-    in2 int,
-    oldCaf int,
-    irc int,
-    tvPit int,
-    ssa int,
-    loft int,
-    msa int,
-    studion int
+    in2 real,
+    oldCaf real,
+    irc real,
+    tvPit real,
+    ssa real,
+    loft real,
+    msa real,
+    studion real
 );
