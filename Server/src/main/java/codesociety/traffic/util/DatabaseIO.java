@@ -2,6 +2,7 @@ package codesociety.traffic.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -79,7 +80,27 @@ public class DatabaseIO {
     }
 
     public float[][] getHistory() {
-        float[][] history = new float[][]{};
+        float[][] history = new float[8][10];
+        
+        ResultSet rs;
+
+        try {
+            Statement st = conn.createStatement();
+            rs = st.executeQuery("SELECT * FROM traffic LIMIT 10");
+
+            int i = 0;
+            while (rs.next()) {
+                String ts = rs.getString("ts"); 
+                for (int j = 0; j < 8; j++) {
+                    double v = rs.getDouble(roomConfig.roomLabels.get(j));
+                    history[j][i] = (float)v;
+                }
+                i++;
+            }
+
+            st.close();
+        } catch (Exception e) {}
+
         return history;
     }
 
