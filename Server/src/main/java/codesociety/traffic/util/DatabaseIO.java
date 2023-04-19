@@ -78,6 +78,11 @@ public class DatabaseIO {
         return driverRooms;
     }
 
+    public float[][] getHistory() {
+        float[][] history = new float[][]{};
+        return history;
+    }
+
     public float[] getNodeRooms() {
         return nodeRooms;
     }
