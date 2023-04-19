@@ -44,6 +44,7 @@ public class WebServer {
                 historyArrays[i] = stringifyFloatArray(history[i]);
             }
             String json = generateRoomJson(historyArrays);
+            res.type("application/json");
             return json;
         });
     }
