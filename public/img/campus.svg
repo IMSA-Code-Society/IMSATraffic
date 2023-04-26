@@ -57,14 +57,14 @@
 		<line class="st2" x1="1200.81" y1="987.38" x2="1676.25" y2="987.38"/>
 	</g>
 </g>
-<rect x="1123.72" y="1249.34" class="st10" width="202.21" height="105.7"/>
-<polygon class="st10" points="854.11,719.3 854.11,664.15 795.89,664.15 795.89,737.68 690.19,737.68 690.19,834.19 921.51,834.19 
+<rect x="1123.72" y="1249.34" class="st10 in2" width="202.21" height="105.7"/>
+<polygon class="st10 oldCaf" points="854.11,719.3 854.11,664.15 795.89,664.15 795.89,737.68 690.19,737.68 690.19,834.19 921.51,834.19 
 	921.51,737.68 921.51,719.3 "/>
-<rect x="1263.13" y="635.04" class="st10" width="125.62" height="105.7"/>
-<rect x="1183.47" y="132.57" class="st10" width="289.53" height="94.98"/>
-<rect x="468.06" y="506.36" class="st10" width="47.49" height="36.77"/>
-<rect x="526.28" y="621.26" class="st10" width="124.09" height="148.6"/>
-<rect x="921.51" y="37.6" class="st10" width="182.3" height="286.47"/>
-<rect x="1082.36" y="1597.09" class="st10" width="116.43" height="67.4"/>
-<rect x="1183.47" y="461.94" class="st10" width="98.81" height="98.81"/>
+<rect x="1263.13" y="635.04" class="st10 acPit" width="125.62" height="105.7"/>
+<rect x="1183.47" y="132.57" class="st10 loft" width="289.53" height="94.98"/>
+<rect x="468.06" y="506.36" class="st10 ssa" width="47.49" height="36.77"/>
+<rect x="526.28" y="621.26" class="st10 tvPit" width="124.09" height="148.6"/>
+<rect x="921.51" y="37.6" class="st10 irc" width="182.3" height="286.47"/>
+<rect x="1082.36" y="1597.09" class="st10 studion" width="116.43" height="67.4"/>
+<rect x="1183.47" y="461.94" class="st10 msa" width="98.81" height="98.81"/>
 </svg>
