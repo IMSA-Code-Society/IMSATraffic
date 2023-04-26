@@ -1,0 +1,1 @@
+document.querySelector(".map").contentDocument.getElementsByClassName("ssa")[0].setAttribute("fill", "red")
